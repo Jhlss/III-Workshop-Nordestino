@@ -49,7 +49,7 @@ K_delta = assemble_Koopman_boundary_condition(B, D, 1/4)#Here when we get a big 
 
 #### Assume there exists a stationary probability measure $\mu$ such that $\mu K=\mu$.
 
-For an observable $\phi:[-1,1]\to\R$, where $\phi(x) = x^2$ we have:
+For an observable $\phi:[-1,1]\to\mathbb{R}$, where $\phi(x) = x^2$ we have:
 
 
 ```julia
@@ -62,6 +62,7 @@ psi_delta = [ϕ(i/N) for i in 0:N]
 ```
 
 The invariance $\mu K=\mu$ implies, for any test function $g$,
+
 $$
 \mu\big((Id-K)g\big)=0.
 $$
@@ -127,11 +128,7 @@ This measures how badly the Poisson equation is violated.
 Then, integrating with respect to $\mu$,
 
 $$
-\int r \, d\mu
-=
-\int (Id - K)\tilde g \, d\mu
--
-\int (\phi - \tilde c) \, d\mu.
+\int r \, d\mu=\int (Id - K)\tilde g \, d\mu-\int (\phi - \tilde c) \, d\mu.
 $$
 
 Since $\mu$ is invariant under $K$,
@@ -145,12 +142,14 @@ and therefore
 $$
 c - \tilde c = \int r \, d\mu.
 $$
+
 The error in the approximation $\tilde c$ of the true average $c$
 is exactly the integral of the residual:
 
 $$
 |c - \tilde c| \le \int |r_{\delta}| \, d\mu + \int|r-r_{\delta}|.
 $$
+
 Thus, controlling the residual gives a rigorous error bound on the computed  by $\tilde r_\delta$.
 
 ### We estimate $\tilde{c}$ by using Birkhoff averages:
@@ -173,15 +172,14 @@ tilde_c  = sum_c / M
 
 If the system is mixing and  $\phi \in L^2(\mu)$, a formal solution of the
 Poisson equation
+
 $$
 (Id - K) g = \phi - \int \phi \, d\mu
 $$
+
 is given by the Neumann series:
 
-$$
-g
-=
-\sum_{n=0}^{\infty} K^n \bigl(\phi - \int \phi \, d\mu).
+$$g = \sum_{n=0}^{\infty} K^n \bigl(\phi - \int \phi \, d\mu).
 $$
 
 #### To use the computed we are estimating the values of were finite that we can work with the computer.
